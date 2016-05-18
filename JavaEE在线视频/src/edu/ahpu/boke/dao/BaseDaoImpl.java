@@ -82,7 +82,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	public List<T> findByCondition(String whereHql, final Object[] params,
 			Map<String, String> orderBy, final boolean cacheable) {
 		// 为方便其他重载的方法调用此方法（提高代码复用性），设置了一个永远为真的条件。
-		String hql="select o from "+entityClass.getSimpleName()+" o where 1=1";
+		String hql="select o from "+entityClass.getSimpleName()+" o where 1=1 ";
 		
 		if(StringUtils.isNotBlank(whereHql)){
 			hql=hql+whereHql;
@@ -127,7 +127,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 		// TODO Auto-generated method stub
 		StringBuffer buf =new StringBuffer();
 		if(orderBy!=null &&!orderBy.isEmpty()){
-			buf.append("order by");
+			buf.append(" order by ");
 			//迭代排序条件
 			for(Map.Entry<String, String> em :orderBy.entrySet()){
 				buf.append(em.getKey()+" "+em.getValue()+",");
@@ -175,7 +175,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	public List<T> findByConditionWithPaging(String whereHql, final Object[] params,
 			Map<String, String> orderBy, final int offset, final int length) {
 		// TODO Auto-generated method stub
-		String hql="select o from "+entityClass.getSimpleName()+" o where 1=1";
+		String hql="select o from "+entityClass.getSimpleName()+" o where 1=1 ";
 		if(StringUtils.isNotBlank(whereHql)){
 			hql=hql+whereHql;
 			
@@ -193,6 +193,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 			public Object doInHibernate(org.hibernate.Session session)throws HibernateException,
 			                                                         SQLException{
 				Query query=session.createQuery(_hql);//创建查询对象
+				System.out.println("我在findByConditionWithPaging"+_hql);
 			    
 				query.setFirstResult(offset);//设置首条件返回结果的位置
 				query.setMaxResults(length);//设置返回结果的最大数量
@@ -209,7 +210,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	@SuppressWarnings({"rawtypes","unchecked"})
 	public int getRowCount(String whereHql, final Object[] params) {
 		// TODO Auto-generated method stub
-		String hql="select count(*) from "+entityClass.getSimpleName()+" o where 1=1";
+		String hql="select count(*) from "+entityClass.getSimpleName()+" o where 1=1 ";
 		if(StringUtils.isNotBlank(whereHql)){
 			hql=hql+whereHql;
 			
@@ -220,6 +221,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 			public Object doInHibernate(org.hibernate.Session session)throws HibernateException,
 			                                                         SQLException{
 				Query query=session.createQuery(_hql);//创建查询对象
+				System.out.println("我在getRowCount"+_hql);
 			    
 				setParams(query,params);//设置查询参数
 				//select count(*)的结果只有一个

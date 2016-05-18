@@ -9,7 +9,7 @@
   <body>
      <h1>发生错误
      <span style="color:#FF0000">
-        <s:property value="${exception.message}"/>
+        <s:property value="%{exception.message}"/>
        </span>
        
        </h1>
@@ -18,7 +18,7 @@
        <h3>详细信息：</h3>
        
        <p>
-       <s:property value="${exceptionStack }"/>
+       <s:property value="%{exceptionStack }"/>
        </p>
   </body>
 </html>

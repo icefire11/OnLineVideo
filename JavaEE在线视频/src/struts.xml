@@ -15,6 +15,9 @@
 
 	<!-- 配置struts为开发模式 -->
 	<constant name="struts.devMode" value="true" />
+	
+	<!-- 允许Struts2标签访问静态方法 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
 
 	<!-- boke应用对应的包 -->
 	<package name="boke" namespace="/" extends="struts-default">

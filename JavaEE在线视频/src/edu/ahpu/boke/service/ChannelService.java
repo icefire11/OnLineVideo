@@ -8,7 +8,7 @@ public interface ChannelService {
 	
 	public List<Channel> findAllChannels();
 	
-	public Channel findChannel(int ChannelId);
+	public Channel findChannel(int channelId);
 	
 	
 }

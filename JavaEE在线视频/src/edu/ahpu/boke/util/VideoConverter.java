@@ -122,7 +122,7 @@ public class VideoConverter {
 		cmd.append(" -i ");
 		cmd.append(flvFileFullName);
 		//在视频播放时长的中间截图
-		cmd.append(" -y -f image2 -ss "+(duration/2)+" -t 0.001 -s 1920x1080 ");
+		cmd.append(" -y -f image2 -ss "+(duration/2)+" -t 0.001 -s 120x90 ");
 		cmd.append(picFileFullName);
 		cmd.append("\r\n");
 		cmd.append("exit");//退出windows命令窗口的命令
